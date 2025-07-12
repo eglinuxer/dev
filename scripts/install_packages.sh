@@ -139,7 +139,7 @@ is_package_installed() {
             brew list --formula "$package" >/dev/null 2>&1
             ;;
         apt)
-            dpkg -l "$package" >/dev/null 2>&1
+            dpkg-query -W -f='${Status}' "$package" 2>/dev/null | grep -q "install ok installed"
             ;;
         pacman)
             pacman -Q "$package" >/dev/null 2>&1
