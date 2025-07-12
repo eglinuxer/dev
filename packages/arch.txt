@@ -1,0 +1,15 @@
+# Arch Linux 特定工具
+tree
+htop
+jq
+base-devel
+
+# AUR helper
+yay
+
+# 开发工具
+python-pip
+nodejs
+npm
+yarn
+eza

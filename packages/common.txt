@@ -1,0 +1,20 @@
+# 通用开发工具
+git
+curl
+wget
+unzip
+tar
+
+# 编辑器和终端工具
+tmux
+neovim
+
+# 开发环境
+python3
+go
+
+# 实用工具
+ripgrep
+fd
+bat
+fzf

@@ -1,0 +1,15 @@
+# macOS 特定工具
+tree
+htop
+jq
+gnu-sed
+eza
+nodejs
+
+# macOS 开发工具
+mas
+mackup
+
+# 字体
+font-fira-code-nerd-font
+font-jetbrains-mono-nerd-font

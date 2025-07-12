@@ -1,0 +1,19 @@
+# Debian/Ubuntu 特定工具
+tree
+htop
+jq
+build-essential
+
+# 系统库
+software-properties-common
+apt-transport-https
+ca-certificates
+gnupg
+lsb-release
+
+# 开发依赖
+python3-pip
+python3-dev
+nodejs
+npm
+exa
