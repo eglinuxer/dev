@@ -244,6 +244,39 @@ install_packages_from_file() {
     done < "$file"
 }
 
+# 确保 sudo 命令可用 (Docker 环境)
+ensure_sudo() {
+    if ! command_exists sudo; then
+        log_warning "sudo 命令不存在，正在安装..."
+        
+        case "$DETECTED_PKG_MANAGER" in
+            apt)
+                apt update && apt install -y sudo
+                ;;
+            pacman)
+                pacman -Sy --noconfirm sudo
+                ;;
+            dnf)
+                dnf install -y sudo
+                ;;
+            yum)
+                yum install -y sudo
+                ;;
+            *)
+                log_error "无法自动安装 sudo，请手动安装"
+                return 1
+                ;;
+        esac
+        
+        if command_exists sudo; then
+            log_success "sudo 安装成功"
+        else
+            log_error "sudo 安装失败"
+            return 1
+        fi
+    fi
+}
+
 # 安装常用工具
 install_common_tools() {
     local script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -252,6 +285,9 @@ install_common_tools() {
     # 安装 Homebrew (仅 macOS)
     if [ "$DETECTED_OS" = "macos" ]; then
         install_homebrew
+    else
+        # 非 macOS 系统确保 sudo 可用
+        ensure_sudo
     fi
     
     # 更新包管理器
